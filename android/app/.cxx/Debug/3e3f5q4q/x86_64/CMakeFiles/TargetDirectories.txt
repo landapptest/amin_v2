@@ -1,0 +1,2 @@
+C:/src/flutter_windows_3.16.6-stable/flutter/chatting_1/chatting/android/app/.cxx/Debug/3e3f5q4q/x86_64/CMakeFiles/edit_cache.dir
+C:/src/flutter_windows_3.16.6-stable/flutter/chatting_1/chatting/android/app/.cxx/Debug/3e3f5q4q/x86_64/CMakeFiles/rebuild_cache.dir
