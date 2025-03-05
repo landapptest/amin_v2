@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:chatting_1/view_models/chat_list_view_model.dart';
+import 'package:chatting_1/view_models/chat/chat_list_view_model.dart';
 import 'package:chatting_1/views/chat/chat_view.dart';
 import 'package:chatting_1/widgets/filter_chip.dart';
 

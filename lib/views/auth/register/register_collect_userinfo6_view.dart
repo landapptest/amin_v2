@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:chatting_1/providers/auth_provider.dart';
 import 'package:chatting_1/utils/constants.dart';
-import 'package:chatting_1/view_models/register_collect_view_model.dart';
+import 'package:chatting_1/view_models/auth/register_collect_view_model.dart';
 import 'package:chatting_1/views/auth/register/register_collect_userinfo7_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';

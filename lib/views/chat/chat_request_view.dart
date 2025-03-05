@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:chatting_1/view_models/chat_request_view_model.dart';
+import 'package:chatting_1/view_models/chat/chat_request_view_model.dart';
 
 class ChatRequestView extends ConsumerStatefulWidget {
   final void Function(bool) toggleRequest;

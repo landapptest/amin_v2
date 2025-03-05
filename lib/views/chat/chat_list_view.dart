@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:chatting_1/view_models/chat_list_view_model.dart';
+import 'package:chatting_1/view_models/chat/chat_list_view_model.dart';
 import 'package:chatting_1/widgets/user_tile.dart';
 import 'package:chatting_1/views/chat/chat_view.dart';
 import 'package:chatting_1/utils/route.dart';

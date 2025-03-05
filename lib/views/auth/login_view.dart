@@ -1,7 +1,7 @@
 import 'package:chatting_1/providers/auth_provider.dart';
 import 'package:chatting_1/utils/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:chatting_1/view_models/login_view_model.dart';
+import 'package:chatting_1/view_models/auth/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

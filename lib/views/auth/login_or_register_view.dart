@@ -1,9 +1,9 @@
 import 'package:chatting_1/utils/constants.dart';
 import 'package:chatting_1/views/auth/login_view.dart';
 import 'package:chatting_1/views/auth/register_view.dart';
-import 'package:chatting_1/view_models/login_view_model.dart';
-import 'package:chatting_1/view_models/register_collect_view_model.dart';
-import 'package:chatting_1/view_models/register_view_model.dart';
+import 'package:chatting_1/view_models/auth/login_view_model.dart';
+import 'package:chatting_1/view_models/auth/register_collect_view_model.dart';
+import 'package:chatting_1/view_models/auth/register_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
