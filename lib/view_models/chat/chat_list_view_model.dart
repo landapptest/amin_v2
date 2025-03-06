@@ -49,7 +49,7 @@ class ChatListViewModel extends StateNotifier<ChatListState> {
     _subscribeToChatRooms();
   }
 
-  final _db = FirebaseDatabase.instance.ref();
+  final _dbRef = FirebaseDatabase.instance.ref();
   final _auth = FirebaseAuth.instance;
 
   /// 실시간 채팅방 변경사항 구독
@@ -57,7 +57,7 @@ class ChatListViewModel extends StateNotifier<ChatListState> {
     final myUid = _auth.currentUser?.uid;
     if (myUid == null || myUid.isEmpty) return;
     // 채팅방 데이터의 onValue 스트림 구독
-    _db.child('chatRooms').onValue.listen((event) async {
+    _dbRef.child('chatRooms').onValue.listen((event) async {
       if (event.snapshot.value == null) {
         state = state.copyWith(isLoading: false, roomItems: []);
         return;
@@ -105,7 +105,7 @@ class ChatListViewModel extends StateNotifier<ChatListState> {
   }
 
   Future<UserModel> _fetchUser(String uid) async {
-    final snap = await _db.child('users').child(uid).get();
+    final snap = await _dbRef.child('users').child(uid).get();
     if (!snap.exists) {
       // 임시 UserModel
       return UserModel(
@@ -139,8 +139,9 @@ class ChatListViewModel extends StateNotifier<ChatListState> {
     final sorted = [myUid, otherUid]..sort();
     final chatRoomId = "${sorted[0]}_${sorted[1]}";
 
-    final chatRoomRef = _db.child('chatRooms').child(chatRoomId);
+    final chatRoomRef = _dbRef.child('chatRooms').child(chatRoomId);
     final snap = await chatRoomRef.get();
+    final notifRef = _dbRef.child('users').child(otherUid).child('notifications').push();
     if (!snap.exists) {
       await chatRoomRef.set({
         'createdAt': DateTime.now().toIso8601String(),
@@ -152,6 +153,17 @@ class ChatListViewModel extends StateNotifier<ChatListState> {
         'lastMessageTime': 0,
         'status': 'requested',
       });
+      final notificationData = {
+        'id': notifRef.key,
+        'type': 'chat_request',
+        'fromUserUid': myUid,
+        'toUserUid': otherUid,
+        'title': '채팅 요청',
+        'messgae': '새로운 채팅 요청',
+        'timestamp': DateTime.now().millisecondsSinceEpoch,
+        'isRead': false,
+      };
+      await _dbRef.child('users').child(otherUid).child('notifications').push().set(notificationData);
     }
     return chatRoomId;
   }

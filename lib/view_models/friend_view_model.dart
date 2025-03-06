@@ -131,6 +131,7 @@ class FriendViewModel extends StateNotifier<FriendState> {
 
     try {
       final updates = <String, dynamic>{};
+      final notifRef = _dbRef.child('users').child(fromUserUid).child('notifications').push();
       updates["users/$myUid/friends/$fromUserUid"] = "accepted";
       updates["users/$fromUserUid/friends/$myUid"] = "accepted";
 
@@ -138,7 +139,21 @@ class FriendViewModel extends StateNotifier<FriendState> {
       //수락 후, 다시 요청/친구목록 갱신
       await fetchPendingRequests();
       await fetchAcceptedFriends();
-    } catch (e) {}
+
+      final notificationData = {
+        'id': notifRef.key,
+        'type': 'friend_accepted',
+        'fromUserUid': myUid,
+        'toUserUid': fromUserUid,
+        'title': '친구 요청 수락',
+        'message': '친구 요청 수락됨',
+        'timestamp': DateTime.now().millisecondsSinceEpoch,
+        'isRead': false,
+      };
+      await _dbRef.root.child('users').child(fromUserUid).child('notifications').set(notificationData);
+    } catch (e) {
+      state = state.copyWith(isLoading: false, errorMessage: e.toString());
+    }
   }
 
   //친구 요청 거절

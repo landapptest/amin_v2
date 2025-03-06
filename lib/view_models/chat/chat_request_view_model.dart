@@ -45,7 +45,7 @@ class ChatRequestState {
 class ChatRequestViewModel extends StateNotifier<ChatRequestState> {
   ChatRequestViewModel() : super(ChatRequestState());
 
-  final _db = FirebaseDatabase.instance.ref();
+  final _dbRef = FirebaseDatabase.instance.ref();
   final _auth = FirebaseAuth.instance;
 
   //현재 "status=='requested'" 인 채팅방만 가져오기
@@ -57,7 +57,7 @@ class ChatRequestViewModel extends StateNotifier<ChatRequestState> {
         throw Exception("로그인 필요");
       }
 
-      final snapshot = await _db.child('chatRooms').get();
+      final snapshot = await _dbRef.child('chatRooms').get();
       if (!snapshot.exists) {
         state = state.copyWith(isLoading: false, requestedRooms: []);
         return;
@@ -108,7 +108,7 @@ class ChatRequestViewModel extends StateNotifier<ChatRequestState> {
 
   //상대방 프로필 가져오기
   Future<UserModel> _fetchUser(String uid) async {
-    final snap = await _db.child('users').child(uid).get();
+    final snap = await _dbRef.child('users').child(uid).get();
     if (!snap.exists) {
       // 임시
       return UserModel(
@@ -136,11 +136,37 @@ class ChatRequestViewModel extends StateNotifier<ChatRequestState> {
   //채팅 요청 수락 => status='accepted'
   Future<void> acceptChatRequest(String chatRoomId) async {
     try {
-      await _db.child('chatRooms').child(chatRoomId).update({
+      final chatRoomSnap = await _dbRef.child('chatRooms').child(chatRoomId).get();
+      if (!chatRoomSnap.exists) return;
+      final roomMap = Map<String, dynamic>.from(chatRoomSnap.value as Map);
+      final usersMap = roomMap['users'] as Map<dynamic, dynamic>?;
+      if (usersMap == null) return;
+      String otherUid = '';
+      final myUid = _auth.currentUser?.uid;
+      for (final key in usersMap.keys) {
+        if (key != myUid) {
+          otherUid = key;
+          break;
+        }
+      }
+      await _dbRef.child('chatRooms').child(chatRoomId).update({
         'status': 'accepted',
       });
       // 변경 후 다시 요청 목록 fetch
       await fetchRequestedRooms();
+
+      final notifRef = _dbRef.child('users').child(otherUid).child('notifications').push();
+      final notificationData = {
+        'id': notifRef.key,
+        'type': 'chat_accepted',
+        'fromUserUid': myUid,
+        'toUserUid': otherUid,
+        'title': '채팅 요청 수락',
+        'message': '채팅 요청 수락됨',
+        'timestamp': DateTime.now().millisecondsSinceEpoch,
+        'isRead': false,
+      };
+      await _dbRef.child('users').child(otherUid).child('notifications').push().set(notificationData);
     } catch (e) {
       state = state.copyWith(errorMessage: e.toString());
     }
@@ -149,7 +175,7 @@ class ChatRequestViewModel extends StateNotifier<ChatRequestState> {
   //채팅 요청 거절 => status='rejected'
   Future<void> rejectChatRequest(String chatRoomId) async {
     try {
-      await _db.child('chatRooms').child(chatRoomId).update({
+      await _dbRef.child('chatRooms').child(chatRoomId).update({
         'status': 'rejected',
       });
       await fetchRequestedRooms();

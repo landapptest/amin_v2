@@ -112,8 +112,21 @@ class FriendSearchViewModel extends StateNotifier<FriendSearchState> {
       updates["users/$myUid/friends/$targetUid"] = "requested";
       updates["users/$targetUid/friends/$myUid"] = "pending";
       await _dbRef.update(updates);
+
+      final notifRef = _dbRef.child('users').child(targetUid).child('notifications').push();
+      final notificationData = {
+        'id': notifRef.key,
+        'type': 'friend_request',
+        'formUserUid': myUid,
+        'toUserUid': targetUid,
+        'title': '친구 요청',
+        'message': '새로윤 친구 요청',
+        'timestamp': DateTime.now().millisecondsSinceEpoch,
+        'isRead': false,
+      };
+      await _dbRef.child('users').child(targetUid).child('notifications').push().set(notificationData);
     } catch (e) {
-      //예외 처리
+      print('Error sending friend request: $e');
     }
   }
 
