@@ -120,7 +120,7 @@ class FriendSearchViewModel extends StateNotifier<FriendSearchState> {
         'formUserUid': myUid,
         'toUserUid': targetUid,
         'title': '친구 요청',
-        'message': '새로윤 친구 요청',
+        'message': '새로운 친구 요청',
         'timestamp': DateTime.now().millisecondsSinceEpoch,
         'isRead': false,
       };
