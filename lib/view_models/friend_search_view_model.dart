@@ -113,13 +113,22 @@ class FriendSearchViewModel extends StateNotifier<FriendSearchState> {
       updates["users/$targetUid/friends/$myUid"] = "pending";
       await _dbRef.update(updates);
 
+      final userSnap = await _dbRef.child('users').child(myUid).get();
+      final currentUserMap = userSnap.value as Map<dynamic, dynamic>;
+      final currentUserName = currentUserMap['userName'] ?? "Unknown";
+      final profileImages = currentUserMap['profileImageUrls'];
+      final currentUserProfileImageUrl =
+      (profileImages is List && profileImages.isNotEmpty)
+          ? profileImages.first as String
+          : "";
+
       final notifRef = _dbRef.child('users').child(targetUid).child('notifications').push();
-      final senderUsername = _auth.currentUser?.displayName ?? "Unknown";
-      final senderProfileImageUrl = "";
+      final senderUsername = currentUserName;
+      final senderProfileImageUrl = currentUserProfileImageUrl;
       final notificationData = {
         'id': notifRef.key,
         'type': 'friend_request',
-        'formUserUid': myUid,
+        'fromUserUid': myUid,
         'toUserUid': targetUid,
         'title': '친구 요청',
         'message': '새로운 친구 요청',

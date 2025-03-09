@@ -152,20 +152,26 @@ class ChatListViewModel extends StateNotifier<ChatListState> {
         'lastMessageTime': 0,
         'status': 'requested',
       });
-      final  notifRef = _dbRef.child('users').child(otherUid).child('notifications').push();
-      final senderUsername = _auth.currentUser?.displayName ?? "Unknown";
-      final senderProfileImageUrl = "";
+      final userSnap = await _dbRef.child('users').child(myUid).get();
+      final currentUserMap = userSnap.value as Map<dynamic, dynamic>;
+      final currentUserName = currentUserMap['userName'] ?? "Unknown";
+      final profileImages = currentUserMap['profileImageUrls'];
+      final currentUserProfileImageUrl = (profileImages is List && profileImages.isNotEmpty)
+          ? profileImages.first as String
+          : "";
+
+      final notifRef = _dbRef.child('users').child(otherUid).child('notifications').push();
       final notificationData = {
         'id': notifRef.key,
         'type': 'chat_request',
         'fromUserUid': myUid,
         'toUserUid': otherUid,
         'title': '채팅 요청',
-        'messgae': '새로운 채팅 요청',
+        'message': '새로운 채팅 요청',
         'timestamp': DateTime.now().millisecondsSinceEpoch,
         'isRead': false,
-        'senderProfileImageUrl': senderProfileImageUrl,
-        'senderUsername': senderUsername,
+        'senderProfileImageUrl': currentUserProfileImageUrl,
+        'senderUsername': currentUserName,
       };
       await notifRef.set(notificationData);
     }

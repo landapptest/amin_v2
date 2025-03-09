@@ -93,6 +93,8 @@ class NotificationViewModel extends StateNotifier<NotificationState> {
     required String toUserUid,
     required String title,
     required String message,
+    required String senderProfileImageUrl,
+    required String senderUsername,
     int? timestamp,
   }) async {
     try {
@@ -107,6 +109,8 @@ class NotificationViewModel extends StateNotifier<NotificationState> {
         message: message,
         timestamp: ts,
         isRead: false,
+        senderProfileImageUrl: senderProfileImageUrl,
+        senderUsername: senderUsername,
       );
       await notifRef.set(newNotification.toJson());
     } catch (e) {

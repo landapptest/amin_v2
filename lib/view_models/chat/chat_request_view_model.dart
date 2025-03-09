@@ -155,9 +155,15 @@ class ChatRequestViewModel extends StateNotifier<ChatRequestState> {
       // 변경 후 다시 요청 목록 fetch
       await fetchRequestedRooms();
 
+      final userSnap = await _dbRef.child('users').child(myUid!).get();
+      final currentUserMap = userSnap.value as Map<dynamic, dynamic>;
+      final currentUserName = currentUserMap['userName'] ?? "Unknown";
+      final profileImages = currentUserMap['profileImageUrls'];
+      final currentUserProfileImageUrl = (profileImages is List && profileImages.isNotEmpty)
+          ? profileImages.first as String
+          : "";
+
       final notifRef = _dbRef.child('users').child(otherUid).child('notifications').push();
-      final senderUsername = _auth.currentUser?.displayName ?? "Unknown";
-      final senderProfileImageUrl = "";
       final notificationData = {
         'id': notifRef.key,
         'type': 'chat_accepted',
@@ -167,8 +173,8 @@ class ChatRequestViewModel extends StateNotifier<ChatRequestState> {
         'message': '채팅 요청 수락됨',
         'timestamp': DateTime.now().millisecondsSinceEpoch,
         'isRead': false,
-        'senderProfileImageUrl': senderProfileImageUrl,
-        'senderUsername': senderUsername,
+        'senderProfileImageUrl': currentUserProfileImageUrl,
+        'senderUsername': currentUserName,
       };
       await notifRef.set(notificationData);
     } catch (e) {
