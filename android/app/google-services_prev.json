@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "38106120261",
+    "firebase_url": "https://chattingbin-14523-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "chattingbin-14523",
+    "storage_bucket": "chattingbin-14523.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38106120261:android:cc051619625740ff82232c",
+        "android_client_info": {
+          "package_name": "com.example.chatting_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5Z4JbfxUTmVP8jf_NIKyWTUHjTaYq6vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38106120261:android:4f76a459360e54c482232c",
+        "android_client_info": {
+          "package_name": "com.example.chatting_practice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5Z4JbfxUTmVP8jf_NIKyWTUHjTaYq6vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
