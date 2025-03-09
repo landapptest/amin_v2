@@ -141,7 +141,6 @@ class ChatListViewModel extends StateNotifier<ChatListState> {
 
     final chatRoomRef = _dbRef.child('chatRooms').child(chatRoomId);
     final snap = await chatRoomRef.get();
-    final notifRef = _dbRef.child('users').child(otherUid).child('notifications').push();
     if (!snap.exists) {
       await chatRoomRef.set({
         'createdAt': DateTime.now().toIso8601String(),
@@ -153,6 +152,9 @@ class ChatListViewModel extends StateNotifier<ChatListState> {
         'lastMessageTime': 0,
         'status': 'requested',
       });
+      final  notifRef = _dbRef.child('users').child(otherUid).child('notifications').push();
+      final senderUsername = _auth.currentUser?.displayName ?? "Unknown";
+      final senderProfileImageUrl = "";
       final notificationData = {
         'id': notifRef.key,
         'type': 'chat_request',
@@ -162,8 +164,10 @@ class ChatListViewModel extends StateNotifier<ChatListState> {
         'messgae': '새로운 채팅 요청',
         'timestamp': DateTime.now().millisecondsSinceEpoch,
         'isRead': false,
+        'senderProfileImageUrl': senderProfileImageUrl,
+        'senderUsername': senderUsername,
       };
-      await _dbRef.child('users').child(otherUid).child('notifications').push().set(notificationData);
+      await notifRef.set(notificationData);
     }
     return chatRoomId;
   }

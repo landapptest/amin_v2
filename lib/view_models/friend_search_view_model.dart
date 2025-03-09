@@ -114,6 +114,8 @@ class FriendSearchViewModel extends StateNotifier<FriendSearchState> {
       await _dbRef.update(updates);
 
       final notifRef = _dbRef.child('users').child(targetUid).child('notifications').push();
+      final senderUsername = _auth.currentUser?.displayName ?? "Unknown";
+      final senderProfileImageUrl = "";
       final notificationData = {
         'id': notifRef.key,
         'type': 'friend_request',
@@ -123,8 +125,10 @@ class FriendSearchViewModel extends StateNotifier<FriendSearchState> {
         'message': '새로운 친구 요청',
         'timestamp': DateTime.now().millisecondsSinceEpoch,
         'isRead': false,
+        'senderProfileImageUrl': senderProfileImageUrl,
+        'senderUsername': senderUsername,
       };
-      await _dbRef.child('users').child(targetUid).child('notifications').push().set(notificationData);
+      await notifRef.set(notificationData);
     } catch (e) {
       print('Error sending friend request: $e');
     }

@@ -139,7 +139,8 @@ class FriendViewModel extends StateNotifier<FriendState> {
       //수락 후, 다시 요청/친구목록 갱신
       await fetchPendingRequests();
       await fetchAcceptedFriends();
-
+      final senderUsername = _auth.currentUser?.displayName ?? "Unknown";
+      final senderProfileImageUrl = "";
       final notificationData = {
         'id': notifRef.key,
         'type': 'friend_accepted',
@@ -149,8 +150,10 @@ class FriendViewModel extends StateNotifier<FriendState> {
         'message': '친구 요청 수락됨',
         'timestamp': DateTime.now().millisecondsSinceEpoch,
         'isRead': false,
+        'senderProfileImageUrl': senderProfileImageUrl,
+        'senderUsername': senderUsername,
       };
-      await _dbRef.root.child('users').child(fromUserUid).child('notifications').set(notificationData);
+      await notifRef.set(notificationData);
     } catch (e) {
       state = state.copyWith(isLoading: false, errorMessage: e.toString());
     }

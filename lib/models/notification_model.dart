@@ -9,6 +9,8 @@ class NotificationModel {
   final String message;
   final int timestamp;
   final bool isRead;
+  final String senderProfileImageUrl;
+  final String senderUsername;
 
   const NotificationModel({
     required this.id,
@@ -19,6 +21,8 @@ class NotificationModel {
     required this.message,
     required this.timestamp,
     this.isRead = false,
+    this.senderProfileImageUrl = '',
+    this.senderUsername = '',
   });
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
@@ -31,6 +35,8 @@ class NotificationModel {
       message: json['message'] ?? '',
       timestamp: json['timestamp'] is int ? json['timestamp'] : 0,
       isRead: json['isRead'] ?? false,
+      senderProfileImageUrl: json['senderProfileImageUrl'] ?? '',
+      senderUsername: json['senderUsername'] ?? '',
     );
   }
 
@@ -44,6 +50,8 @@ class NotificationModel {
       'message': message,
       'timestamp': timestamp,
       'isRead': isRead,
+      'senderProfileImageUrl': senderProfileImageUrl,
+      'senderUsername': senderUsername,
     };
   }
 }
