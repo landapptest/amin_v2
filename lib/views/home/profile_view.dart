@@ -80,22 +80,11 @@ class _ProfileViewState extends ConsumerState<ProfileView> with TickerProviderSt
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text("취소", style: TextStyle(fontSize: 18, color: Colors.black)),
-                ),
                 const Text(
                   "프로필 설정",
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // 적용 로직 추가 가능
-                    Navigator.pop(context);
-                  },
-                  child: const Text("적용", style: TextStyle(fontSize: 18, color: Colors.black)),
                 ),
               ],
             ),
@@ -121,22 +110,11 @@ class _ProfileViewState extends ConsumerState<ProfileView> with TickerProviderSt
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text("취소", style: TextStyle(fontSize: 18, color: Colors.black)),
-                      ),
                       const Text(
                         "학습언어 설정",
                         style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          // 적용 로직 추가 가능
-                          Navigator.pop(context);
-                        },
-                        child: const Text("적용", style: TextStyle(fontSize: 18, color: Colors.black)),
                       ),
                     ],
                   ),
@@ -165,22 +143,11 @@ class _ProfileViewState extends ConsumerState<ProfileView> with TickerProviderSt
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text("취소", style: TextStyle(fontSize: 18, color: Colors.black)),
-                    ),
                     const Text(
                       "앱 설정",
                       style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        // 적용 로직 추가 가능
-                        Navigator.pop(context);
-                      },
-                      child: const Text("적용", style: TextStyle(fontSize: 18, color: Colors.black)),
                     ),
                   ],
                 ),

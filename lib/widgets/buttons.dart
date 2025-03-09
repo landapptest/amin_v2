@@ -123,7 +123,7 @@ Widget DropDownButton({
     child: DropdownButtonFormField2<String>(
       isExpanded: true,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+        contentPadding: const EdgeInsets.fromLTRB(16, 20, 8, 16),
         // contentPadding: const EdgeInsets.symmetric(vertical: 16),
         filled: true,
         fillColor: ANIM_WHITE,
