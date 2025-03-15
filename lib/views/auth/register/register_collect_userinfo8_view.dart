@@ -129,7 +129,7 @@ class _RegisterCollectUserInfoEighthScreenState
                     height: 60,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: ANIM_YELLOW,
+                      color: AMIN_YELLOW,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: const Text(
@@ -238,7 +238,7 @@ class _RegisterCollectUserInfoEighthScreenState
                 decoration: BoxDecoration(
                   color: (state.userLocation == null)
                       ? const Color(0xFFD9D9D9)
-                      : ANIM_YELLOW,
+                      : AMIN_YELLOW,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Text(
@@ -260,7 +260,7 @@ class _RegisterCollectUserInfoEighthScreenState
                 height: 63,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: ANIM_YELLOW.withAlpha(0xC0),
+                  color: AMIN_YELLOW.withAlpha(0xC0),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Text(

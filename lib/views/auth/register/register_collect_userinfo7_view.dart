@@ -123,7 +123,7 @@ class _RegisterCollectUserInfoSeventhScreenState
               height: 63,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: ANIM_YELLOW,
+                color: AMIN_YELLOW,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
@@ -156,7 +156,7 @@ class _RegisterCollectUserInfoSeventhScreenState
               height: 63,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: ANIM_YELLOW,
+                color: AMIN_YELLOW,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
@@ -188,7 +188,7 @@ class _RegisterCollectUserInfoSeventhScreenState
               height: 63,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: ANIM_YELLOW,
+                color: AMIN_YELLOW,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(

@@ -158,7 +158,7 @@ class RegisterScreen extends ConsumerWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        backgroundColor: canRegister ? ANIM_YELLOW : Color(0xFFCCCCCC),
+                        backgroundColor: canRegister ? AMIN_YELLOW : Color(0xFFCCCCCC),
                       ),
                       child: Text(
                         "회원가입",

@@ -74,11 +74,11 @@ class RegisterCollectUserInfoFourthScreen extends ConsumerWidget {
                               child: Container(
                                   height: 76,
                                   decoration: BoxDecoration(
-                                    color: state.languageLevelIndex == index ? ANIM_YELLOW : Colors.white,
+                                    color: state.languageLevelIndex == index ? AMIN_YELLOW : Colors.white,
                                     borderRadius: BorderRadius.circular(20),
                                     border: Border.all(
                                       width: 3,
-                                      color: ANIM_YELLOW_LIGHT,
+                                      color: AMIN_YELLOW_LIGHT,
                                     ),
                                     boxShadow: [
                                       BoxShadow(
@@ -137,7 +137,7 @@ class RegisterCollectUserInfoFourthScreen extends ConsumerWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              backgroundColor: notifier.isLanguageSetted() ? ANIM_YELLOW : Color(0xFFCCCCCC),
+                              backgroundColor: notifier.isLanguageSetted() ? AMIN_YELLOW : Color(0xFFCCCCCC),
                             ),
                             child: Text(
                               "선택 완료",

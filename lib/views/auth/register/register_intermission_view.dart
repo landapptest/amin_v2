@@ -95,7 +95,7 @@ class _RegisterIntermissionScreenState extends State<RegisterIntermissionScreen>
             height: circleSize,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: ANIM_YELLOW_DARK,
+              color: AMIN_YELLOW_DARK,
             ),
           ),
         ),
@@ -111,7 +111,7 @@ class _RegisterIntermissionScreenState extends State<RegisterIntermissionScreen>
             height: circleSize,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: ANIM_YELLOW_LIGHT,
+              color: AMIN_YELLOW_LIGHT,
             ),
           ),
         ),

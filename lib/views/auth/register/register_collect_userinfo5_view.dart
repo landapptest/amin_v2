@@ -211,7 +211,7 @@ class _RegisterCollectUserInfoFifthScreenState extends ConsumerState<RegisterCol
                                 child: Container(
                                   padding: const EdgeInsets.only(left: 80, right: 80, top: 15, bottom: 15),
                                   decoration: BoxDecoration(
-                                    color: (state.profileFileArray[0] != null) ? ANIM_YELLOW : const Color(0xFFCCCCCC),
+                                    color: (state.profileFileArray[0] != null) ? AMIN_YELLOW : const Color(0xFFCCCCCC),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: const Text(

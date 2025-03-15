@@ -44,7 +44,7 @@ class NotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bgColor = _getBackgroundColor(notification.type);
-    final subtitleText = _buildSubtitle(notification.type, notification.message);
+    final subtitleText = _buildSubtitle(notification.type, notification.senderUsername);
 
     return InkWell(
       onTap: onTap,

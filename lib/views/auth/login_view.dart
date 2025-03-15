@@ -120,7 +120,7 @@ class LoginScreen extends ConsumerWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20), // 모서리 둥글게 설정
                         ),
-                        backgroundColor: canLogin ? ANIM_YELLOW : Color(0xFFCCCCCC),
+                        backgroundColor: canLogin ? AMIN_YELLOW : Color(0xFFCCCCCC),
                       ),
                       child: Text(
                         "로그인",

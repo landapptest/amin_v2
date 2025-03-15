@@ -55,7 +55,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(
                           20), // 모서리 둥글게 설정
                     ),
-                    backgroundColor: ANIM_YELLOW,
+                    backgroundColor: AMIN_YELLOW,
                   ),
                   child: Text(
                     "로그인",
@@ -87,7 +87,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    backgroundColor: ANIM_YELLOW,
+                    backgroundColor: AMIN_YELLOW,
                   ),
                   child: Text(
                     "회원가입",

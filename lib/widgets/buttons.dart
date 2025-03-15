@@ -1,4 +1,6 @@
 import 'package:chatting_1/utils/constants.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget DropShadowBasicButton({
@@ -18,12 +20,12 @@ Widget DropShadowBasicButton({
       height: height ?? null,
       // alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: innerColor ?? ANIM_WHITE,
+        color: innerColor ?? AMIN_WHITE,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(width: 2, color: borderColor ?? ANIM_GREY),
+        border: Border.all(width: 2, color: borderColor ?? AMIN_GREY),
         boxShadow: [
           BoxShadow(
-            color: shadowColor ?? ANIM_GREY,
+            color: shadowColor ?? AMIN_GREY,
             blurRadius: 0.0,
             spreadRadius: 0.0,
             offset: const Offset(0,2),
@@ -48,20 +50,20 @@ Widget DropShadowTextButton({
 }) {
   return InkWell(
     onTap: onTap ?? () {},
-    borderRadius: BorderRadius.circular(12),
+    borderRadius: BorderRadius.circular(32),
     child: Ink(
       width: width ?? double.infinity,
       height: height ?? 50,
       decoration: BoxDecoration(
-        color: innerColor ?? ANIM_WHITE,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(width: 2, color: borderColor ?? ANIM_GREY),
+        color: innerColor ?? Color(0xFF3C3C3C),
+        borderRadius: BorderRadius.circular(32),
+        border: Border.all(width: 2, color: borderColor ?? Color(0xFF3C3C3C)),
         boxShadow: [
           BoxShadow(
-            color: shadowColor ?? ANIM_GREY,
+            color: shadowColor ?? Color(0x603A86FF),
             blurRadius: 0.0,
             spreadRadius: 0.0,
-            offset: const Offset(0, 2),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -71,7 +73,7 @@ Widget DropShadowTextButton({
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: fontSize ?? 22,
-            color: fontColor ?? ANIM_BLACK,
+            color: fontColor ?? AMIN_WHITE,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -106,5 +108,152 @@ Widget LabelDropTextButton({
         ),
       ),
     ],
+  );
+}
+
+Widget DropDownButton({
+  required List ranges,
+  required String? selectValue,
+  Function(String?)? onChanged,
+  String? hintText,
+  String? labelText,
+}) {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 1),
+    child: DropdownButtonFormField2<String>(
+      isExpanded: true,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.fromLTRB(16, 20, 8, 16),
+        // contentPadding: const EdgeInsets.symmetric(vertical: 16),
+        filled: true,
+        fillColor: AMIN_WHITE,
+        labelText: labelText ?? "labelText", // 라벨 텍스트
+        labelStyle: TextStyle(
+          fontSize: 20,
+          color: AMIN_GREY,
+          fontWeight: FontWeight.bold,
+        ),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        floatingLabelAlignment: FloatingLabelAlignment.start,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.transparent),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.transparent),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.transparent),
+        ),
+        // 하단 바 제거
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.transparent),
+        ),
+      ),
+      hint: Center(
+        child: Text(
+          hintText ?? "",
+          style: TextStyle(
+              fontSize: 16
+          ),
+        ),
+      ),
+      value: ranges.contains(selectValue) ? selectValue : null,
+      items: ranges
+          .map((item) => DropdownMenuItem<String>(
+        value: item,
+        child: Center(
+          child: Text(
+            item,
+            style: const TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ))
+          .toList(),
+      validator: (value) {
+        if (value == null) {
+          return '';
+        }
+        return null;
+      },
+      onChanged: onChanged ?? (value) {
+        selectValue = value;
+      },
+      onSaved: (value) {
+        selectValue = value.toString();
+      },
+      buttonStyleData: const ButtonStyleData(
+        padding: EdgeInsets.only(right: 8),
+      ),
+      iconStyleData: const IconStyleData(
+        icon: Icon(
+          Icons.keyboard_arrow_down_rounded,
+          color: Colors.black45,
+        ),
+        iconSize: 28,
+      ),
+      dropdownStyleData: DropdownStyleData(
+        decoration: BoxDecoration(
+          color: AMIN_WHITE,
+          borderRadius: BorderRadius.circular(15),
+        ),
+      ),
+      menuItemStyleData: const MenuItemStyleData(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+      ),
+    ),
+  );
+}
+
+Widget MultiLineTextField({
+  required TextEditingController textController,
+  required ScrollController scrollController,
+  double? height,
+  String? hintText,
+}) {
+  return Container(
+    width: double.infinity,
+    height: height ?? 150,
+    margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 1),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(12),
+      color: AMIN_WHITE,
+    ),
+    child: Scrollbar(
+      controller: scrollController,
+      child: TextField(
+        scrollController: scrollController,
+        maxLines: null,
+        expands: true,
+        maxLength: 100,
+        controller: textController,
+        textAlign: TextAlign.center,
+        textAlignVertical: TextAlignVertical.center,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.transparent,
+          hintText: hintText ?? "",
+          hintStyle: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            color: Colors.grey.shade400,
+          ),
+          border: InputBorder.none,
+        ),
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
+        onChanged: (introduce) {
+          // notifier.updateIntroduce(introduce);
+        },
+      ),
+    ),
   );
 }

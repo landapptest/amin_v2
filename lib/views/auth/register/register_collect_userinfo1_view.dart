@@ -80,7 +80,7 @@ class _RegisterCollectUserInfoFirstScreenState extends ConsumerState<RegisterCol
                         // 둥근 모서리 설정
                         border: Border.all(
                           width: 3,
-                          color: ANIM_YELLOW, // TODO: focus됐을때만 파란색
+                          color: AMIN_YELLOW, // TODO: focus됐을때만 파란색
                         )
                     ),
                     child: Padding(
@@ -157,13 +157,13 @@ class _RegisterCollectUserInfoFirstScreenState extends ConsumerState<RegisterCol
                             notifier.updateRegisterState(3);
                           },
                           backgroundColor: state.gender == gender
-                              ? ANIM_YELLOW
+                              ? AMIN_YELLOW
                               : Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                             side: BorderSide(
                               color: state.gender == gender
-                                  ? ANIM_YELLOW
+                                  ? AMIN_YELLOW
                                   : Colors.grey,
                               width: 2,
                             ),
@@ -223,12 +223,12 @@ class _RegisterCollectUserInfoFirstScreenState extends ConsumerState<RegisterCol
                             }
                           },
                           backgroundColor: state.ageGroup ==
-                              ageGroup ? ANIM_YELLOW : Colors.white,
+                              ageGroup ? AMIN_YELLOW : Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                             side: BorderSide(
                               color: state.ageGroup == ageGroup
-                                  ? ANIM_YELLOW
+                                  ? AMIN_YELLOW
                                   : Colors.grey,
                               width: 2,
                             ),
@@ -299,14 +299,14 @@ class _RegisterCollectUserInfoFirstScreenState extends ConsumerState<RegisterCol
                               },
                               backgroundColor: state.purpose ==
                                   purpose
-                                  ? ANIM_YELLOW
+                                  ? AMIN_YELLOW
                                   : Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
                                     12),
                                 side: BorderSide(
                                   color: state.purpose == purpose
-                                      ? ANIM_YELLOW
+                                      ? AMIN_YELLOW
                                       : Colors.grey,
                                   width: 3,
                                 ),

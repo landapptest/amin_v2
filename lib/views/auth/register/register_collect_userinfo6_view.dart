@@ -87,7 +87,7 @@ class _RegisterCollectUserInfoSixthScreenState extends ConsumerState<RegisterCol
             child: Container(
               padding: const EdgeInsets.only(left: 80, right: 80, top: 15, bottom: 15),
               decoration: BoxDecoration(
-                color: ANIM_YELLOW,
+                color: AMIN_YELLOW,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
